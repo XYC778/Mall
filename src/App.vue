@@ -4,13 +4,13 @@
   </div>
 </template>
 <script>
-import TabBarMain from './components/tabbar/TabBarMain.vue'
+import TabBarMain from 'components/content/TabBarMain/TabBarMain.vue'
 export default {
-  components:{
+  components: {
     TabBarMain
   }
 }
 </script>
 <style lang="scss">
-@import "./assets/css/base.css";
+@import "assets/css/base.css";
 </style>
