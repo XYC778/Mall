@@ -1,5 +1,9 @@
 <template>
   <div id="app">
+    <!-- 路由不销毁 -->
+    <keep-alive exclude="Detail">
+    <router-view/>
+    </keep-alive>
     <tab-bar-main></tab-bar-main>
   </div>
 </template>

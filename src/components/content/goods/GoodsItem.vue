@@ -1,6 +1,6 @@
 <template>
-  <div class="goods-item">
-    <img :src="goodsitem.show.img" alt="">
+  <div class="goods-item" @click="GoodsItem">
+    <img :src="goodsitem.show.img" alt="" />
     <div class="goods-info">
       <p>{{goodsitem.title}}</p>
       <span class="price">{{goodsitem.price}}</span>
@@ -32,7 +32,9 @@ export default {
   },
 
   methods: {
-    
+    GoodsItem(){
+      this.$router.push('/detail/'+ this.goodsitem.iid)
+    }
   },
 };
 </script>

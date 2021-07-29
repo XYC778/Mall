@@ -34,19 +34,19 @@
     
 <script>
 //子组件
-import NavBar from "components/common/navbar/NavBar";
-import TabControl from "components/content/tabcontrol/TabControl.vue";
-import GoodsList from "components/content/goods/GoodsList.vue";
+import NavBar from "components/common/navbar/NavBar"
+import TabControl from "components/content/tabcontrol/TabControl.vue"
+import GoodsList from "components/content/goods/GoodsList.vue"
 
 //方法
-import { getHomeMultidata, getHomeGoods } from "network/home.js";
+import { getHomeMultidata, getHomeGoods } from "network/home.js"
 
 //公共组件
-import SwiperHome from "./childComponents/SwiperHome.vue";
-import RecommendView from "./childComponents/RecommendView.vue";
-import FeatureView from "./childComponents/FeatureView.vue";
-import Scroll from "components/common/scroll/Scroll.vue";
-import BackTop from "components/common/BackTop/BackTop.vue";
+import SwiperHome from "./childComponents/SwiperHome.vue"
+import RecommendView from "./childComponents/RecommendView.vue"
+import FeatureView from "./childComponents/FeatureView.vue"
+import Scroll from "components/common/scroll/Scroll.vue"
+import BackTop from "components/common/BackTop/BackTop.vue"
 
 export default {
   name: "Home",
@@ -71,7 +71,7 @@ export default {
       },
       currentType: "pop",
       isShow: false,
-    };
+    }
   },
   methods: {
     /**
@@ -80,16 +80,16 @@ export default {
     // 切换显示的内容
     tabClick(index) {
       // 切换后重新计算高度
-      this.$refs.scroll.fetchData();
+      this.$refs.scroll.fetchData()
       switch (index) {
         case 0:
-          this.currentType = "pop";
+          this.currentType = "pop"
           break;
         case 1:
-          this.currentType = "new";
+          this.currentType = "new"
           break;
         case 2:
-          this.currentType = "sell";
+          this.currentType = "sell"
       }
       this.$refs.tabControl1.currentIndex = index
       this.$refs.tabControl2.currentIndex = index
@@ -98,17 +98,17 @@ export default {
     // 回到顶部
     backClick() {
       // console.log(this.$refs.scroll.scroll);
-      this.$refs.scroll.scrollTo(0, 0, 500);
+      this.$refs.scroll.scrollTo(0, 0, 500)
     },
     // 监听滑动的高度,决定返回顶部图标是否显示或隐藏
     contentScroll(position) {
       // console.log(position, this.$refs.banref.offsetHeight);
       // 超过TabBar的高度就显示回到顶部图标
-      this.isShow = -position.y > this.$refs.banref.offsetHeight;
+      this.isShow = -position.y > this.$refs.banref.offsetHeight
     },
     loadMore() {
-      this.getHomeGoods(this.currentType);
-      this.$refs.scroll.fetchData();
+      this.getHomeGoods(this.currentType)
+      this.$refs.scroll.fetchData()
     },
     /**
      * 网络请求相关的方法
@@ -116,37 +116,37 @@ export default {
     getHomeMultidata() {
       // 请求首页头部数据
       getHomeMultidata().then((res) => {
-        this.banners = res.data.banner.list;
-        this.recommends = res.data.recommend.list;
-      });
+        this.banners = res.data.banner.list
+        this.recommends = res.data.recommend.list
+      })
     },
     getHomeGoods(type) {
       // 请求商品数据
-      const page = this.goods[type].page + 1;
+      const page = this.goods[type].page + 1
 
       getHomeGoods(type, page).then((res) => {
-        this.goods[type].list.push(...res.data.list);
-        this.goods[type].page += 1;
+        this.goods[type].list.push(...res.data.list)
+        this.goods[type].page += 1
         // 上拉加载后需执行这个函数才能继续执行上拉加载更多
-        this.$refs.scroll.finishPullUp();
-      });
+        this.$refs.scroll.finishPullUp()
+      })
     },
   },
   created() {
-    this.getHomeMultidata();
+    this.getHomeMultidata()
     // 请求流行的数据
-    this.getHomeGoods("pop");
+    this.getHomeGoods("pop")
     // 请求新款的数据
-    this.getHomeGoods("new");
+    this.getHomeGoods("new")
     // 请求精品的数据
-    this.getHomeGoods("sell");
+    this.getHomeGoods("sell")
   },
   computed: {
     showGoods() {
-      return this.goods[this.currentType].list;
+      return this.goods[this.currentType].list
     },
   },
-};
+}
 </script>
 
 <style scoped>

@@ -36,7 +36,7 @@ export default {
   box-shadow: 0 -2px 7px rgba(100,100,100,.2);
   text-align: center;
   background-color: #f6f6f6;
-  z-index: 999;
+  z-index: 99;
 }
 
 </style>

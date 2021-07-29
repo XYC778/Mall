@@ -37,7 +37,6 @@ export default {
   line-height: 44px;
   color: #fff;
   font-size: 16px;
-  background-color: var(--color-tint);
 }
 .left,.right {
   width: 60px;

@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import BScroll from "better-scroll";
+import BScroll from "better-scroll"
 export default {
   name: "Scorll",
   data() {
@@ -27,23 +27,22 @@ export default {
   },
   methods: {
     scrollTo(x, y, time = 300) {
-      this.scroll && this.scroll.scrollTo(x, y, time);
+      this.scroll && this.scroll.scrollTo(x, y, time)
     },
     finishPullUp() {
-      this.scroll && this.scroll.finishPullUp();
+      this.scroll && this.scroll.finishPullUp()
     },
     fetchData() {
-      // console.log(11);
-        this.scroll && this.scroll.refresh();
+        this.scroll && this.scroll.refresh()
     },
   },
   watch: {
     //   刷新页面能正确计算高度
     scroll() {
       setTimeout(() => {
-        this.fetchData();
+        this.fetchData()
         // console.log("监听执行refresh方法");
-      }, 300);
+      }, 300)
     },
   },
   components: {},
@@ -61,11 +60,11 @@ export default {
     // 监听上拉事件
     if (this.pullUpLoad) {
       this.scroll.on("pullingUp", () => {
-        this.$emit("pullingUp");
-      });
+        this.$emit("pullingUp")
+      })
     }
   },
-};
+}
 </script>
 
 <style scoped>
