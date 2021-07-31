@@ -1,11 +1,17 @@
-/* eslint-disable no-undef */
-import { request } from './request'
+import {request} from "./request";
+
 export function getDetail(iid) {
   return request({
     url: '/detail',
     params: {
-      iid
+        iid
     }
+  })
+}
+
+export function getGoodsRecommend( ) {
+  return request({
+    url: '/recommend',
   })
 }
 
@@ -17,11 +23,10 @@ export class Goods {
     this.oldPrice = itemInfo.oldPrice
     this.discount = itemInfo.discountDesc
     this.columns = columns
-    this.services = services
+    this.services =services
     this.realPrice = itemInfo.lowNowPrice
   }
 } 
-
 
 export class Shop{
   constructor(shopInfo) {

@@ -1,81 +1,53 @@
 <template>
-  <div class="wrapper" ref="wrapper">
-    <div class="content">
+  <div ref="wrapper">
+    <div>
       <slot></slot>
     </div>
   </div>
 </template>
 
 <script>
-import BScroll from "better-scroll"
-export default {
-  name: "Scorll",
-  data() {
-    return {
-      scroll: null,
-    };
-  },
-  props: {
-    probeType: {
-      type: Number,
-      default: 0,
-    },
-    pullUpLoad: {
-      type: Boolean,
-      default: false,
-    },
-  },
-  methods: {
-    scrollTo(x, y, time = 300) {
-      this.scroll && this.scroll.scrollTo(x, y, time)
-    },
-    finishPullUp() {
-      this.scroll && this.scroll.finishPullUp()
-    },
-    fetchData() {
-        this.scroll && this.scroll.refresh()
-    },
-  },
-  watch: {
-    //   刷新页面能正确计算高度
-    scroll() {
-      setTimeout(() => {
-        this.fetchData()
-        // console.log("监听执行refresh方法");
-      }, 300)
-    },
-  },
-  components: {},
-  mounted() {
-    //  创建BScroll对象
-    this.scroll = new BScroll(this.$refs.wrapper, {
-      probeType: this.probeType,
-      click: true,
-      pullUpLoad: this.pullUpLoad,
-    });
-    // 监听滚动位置
-    this.scroll.on("scroll", (position) => {
-      this.$emit("scroll", position);
-    });
-    // 监听上拉事件
-    if (this.pullUpLoad) {
-      this.scroll.on("pullingUp", () => {
-        this.$emit("pullingUp")
-      })
+    import BScroll from 'better-scroll'
+
+    export default {
+        name: "scroller",
+        data() {
+            return {
+                scroller:{
+                    type:Object,
+                    default() {
+                        return {}
+                    }
+                }
+            }
+        },
+        //接收父组件来的值
+        props:{
+            probeType:{
+                type:Number,
+                default:0
+            }
+        },
+        mounted() {
+            this.scroller = new BScroll(this.$refs.wrapper, {
+                probeType:this.probeType,
+            })
+
+            this.scroller.on('scroll', (postion) => {
+                //console.log(postion);
+                this.$emit('scroll', postion)
+            })
+
+        },
+        methods:{
+            scrollTo(x, y, time=300) {
+                this.scroller.scrollTo(0, 0, time)
+            },
+
+        }
     }
-  },
-}
 </script>
 
 <style scoped>
-.wrapper{
-  overflow: hidden;
-}
-.content:after{ 
-  content:'';
-  clear:both; 
-  display:block;
-  visibility:hidden;
-  height:0px;
-}
+
 </style>

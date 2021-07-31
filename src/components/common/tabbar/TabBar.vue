@@ -1,42 +1,26 @@
 <template>
-  <div class="tab-bar">
-      <slot></slot>
+  <div id="tab-bar">
+    <slot></slot>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'Tabbar',
-
-
+  name: "TabBar",
   data() {
-    return {
-      
-    };
-  },
-
-  mounted() {
-    
-  },
-
-  methods: {
-    
+    return {};
   },
 };
 </script>
 
-<style lang="scss" scoped>
-.tab-bar {
+<style>
+#tab-bar {
   display: flex;
+  background-color: #f6f6f6;
   position: fixed;
-  bottom: 0;
   left: 0;
   right: 0;
-  height: 49px;
-  box-shadow: 0 -2px 7px rgba(100,100,100,.2);
-  text-align: center;
-  background-color: #f6f6f6;
-  z-index: 99;
+  bottom: 0;
+  box-shadow: 0 -1px 1px rgba(100, 100, 100, 0.2);
 }
-
 </style>
